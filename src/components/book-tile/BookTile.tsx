@@ -2,16 +2,20 @@ import React from 'react'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
 
 import { Book } from '../../classes/Book';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     img: {
-      height: "50%"
+      height: "50%",
+    },
+    tile: {
+      // TODO: this doesn't work, looks like the hover doesn't fire
+      hover: {
+        opacity: ".5",
     }
+  }
   }),
 );
 
@@ -38,17 +42,12 @@ export default function BookTile() {
   const classes = useStyles();
 
   return (
-    
-      <GridListTile key={book.id} onClick={onClick}>
+    // TODO: need something here to show when a book is already checked out
+      <GridListTile key={book.id} onClick={onClick} className={classes.tile}>
             <img src={book.image} alt={book.title} className={classes.img} />
             <GridListTileBar 
               title={book.title}
               subtitle={<span>by: {book.authors}</span>}
-              actionIcon={
-                <IconButton aria-label={`info about ${book.title}`} >
-                  <InfoIcon></InfoIcon>
-                </IconButton>
-              }
             />
 
       </GridListTile>
