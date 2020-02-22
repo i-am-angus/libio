@@ -19,27 +19,28 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const book: Book = {
-  authors: ["Angus Burroughs"],
-  holderEmail: "chad.williams@clickatell.com",
-  office: "CAPE_TOWN",
-  status: false,
-  tags: ["negotiation", "business"],
-  title: "Never Split the Difference",
-  waitingList: [],
-  // image: "https://media.takealot.com/covers_isbn/9781847941497-full.jpg",
-  image: "", // TODO sort styling for image sizing
-  id: "2345"
-}
+// const book: Book = {
+//   authors: ["Angus Burroughs"],
+//   holderEmail: "chad.williams@clickatell.com",
+//   office: "CAPE_TOWN",
+//   status: false,
+//   tags: ["negotiation", "business"],
+//   title: "Never Split the Difference",
+//   waitingList: [],
+//   // image: "https://media.takealot.com/covers_isbn/9781847941497-full.jpg",
+//   image: "", // TODO sort styling for image sizing
+//   id: "2345"
+// }
 
 // Fuck TypeScript's very specific MouseEvent checking, on god
-const onClick = (e: {}) => {
+const onClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
   alert("bloo")
 }
 
 // todo: make book a parameter
-export default function BookTile() {
+export default function BookTile({ book }: { book: Book }) {
   const classes = useStyles();
+
 
   return (
     // TODO: need something here to show when a book is already checked out

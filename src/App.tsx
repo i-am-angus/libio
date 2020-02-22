@@ -2,12 +2,13 @@ import React from 'react';
 import './App.css';
 import Helmet from 'react-helmet';
 import BookGridView from './components/book-grid-view/BookGridView';
+import BookProvider from './contexts/BookContext';
 
 function App() {
   return (
     
     <div className="App">
-      {/* this Helmet thing is the React Friendly way to manipulate <head> properties and such */}
+      {/* //* this Helmet thing is the React Friendly way to manipulate <head> properties and such */}
       <Helmet>
         <title>Lib.io</title>
         <meta
@@ -17,14 +18,15 @@ function App() {
       </Helmet>
       
 
-      {/* TODO: Make seperate component */}
+      {/* //TODO: Make seperate component */}
       <header className="App-header">
         <h1>Welcome to Lib.io</h1>
       </header>
 
-      <BookGridView></BookGridView>
+      <BookProvider>
+        <BookGridView></BookGridView>
+      </BookProvider>
 
-      
     </div>
   );
 }

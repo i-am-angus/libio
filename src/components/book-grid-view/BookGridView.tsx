@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import { GridList } from '@material-ui/core';
 import BookTile from '../book-tile/BookTile';
+import { BookContext } from '../../contexts/BookContext';
+import { Book } from '../../classes/Book';
 
 // copied from material-ui site
 const useStyles = makeStyles((theme: Theme) =>
@@ -39,13 +41,15 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function BookGridView() {
   const classes = useStyles();
 
+  const books = useContext(BookContext).books;
 
   return (
     <div className={classes.root}>
       <GridList cellHeight={180} className={classes.gridList}>
         
-          <BookTile></BookTile>
-          <BookTile></BookTile>
+        {Object.values(books).map( (book: Book) => {
+          return <BookTile book={book}></BookTile>
+        })}
         
       </GridList>
     </div>
