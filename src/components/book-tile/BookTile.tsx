@@ -33,18 +33,17 @@ const useStyles = makeStyles((theme: Theme) =>
 // }
 
 // Fuck TypeScript's very specific MouseEvent checking, on god
-const onClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-  alert("bloo")
+const onClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, openModalFunc: any, book: Book) => {
+  openModalFunc(book)
 }
 
-// todo: make book a parameter
-export default function BookTile({ book }: { book: Book }) {
+export default function BookTile({ book, openModalFunc }: { book: Book, openModalFunc: any }) {
   const classes = useStyles();
 
 
   return (
     // TODO: need something here to show when a book is already checked out
-      <GridListTile key={book.id} onClick={onClick} className={classes.tile}>
+      <GridListTile key={book.id} onClick={(e) => {onClick(e, openModalFunc, book)}} className={classes.tile}>
             <img src={book.image} alt={book.title} className={classes.img} />
             <GridListTileBar 
               title={book.title}

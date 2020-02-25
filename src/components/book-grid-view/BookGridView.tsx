@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import { GridList } from '@material-ui/core';
 import BookTile from '../book-tile/BookTile';
 import { BookContext } from '../../contexts/BookContext';
 import { Book } from '../../classes/Book';
+import BookModal from '../book-modal/BookModal';
 
 // copied from material-ui site
 const useStyles = makeStyles((theme: Theme) =>
@@ -30,15 +31,32 @@ export default function BookGridView() {
 
   const books = useContext(BookContext).books;
 
+  // todo need to make this cleaner, possibly put in a context or something
+  const [openBook, setOpenBook] = useState<Book>()
+
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const openModal = (book: Book) => {
+    setOpenBook(book);
+    setModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setModalOpen(false)
+  }
+
   return (
     <div className={classes.root}>
       <GridList cellHeight={180} className={classes.gridList}>
         
         {Object.values(books).map( (book: Book) => {
-          return <BookTile book={book}></BookTile>
+          return <BookTile book={book} openModalFunc={openModal}></BookTile>
         })}
         
       </GridList>
+
+      // todo don't like this being here
+      <BookModal open={modalOpen} close={closeModal} book={openBook} ></BookModal>
     </div>
   )
 }
