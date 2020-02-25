@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap',
       justifyContent: 'space-around',
       overflow: 'hidden',
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: "black",
     },
     gridList: {
       width: 500,
@@ -24,19 +24,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-
-// const tileData = [
-//   {
-//     img: "",
-//     title: 'Wan',
-//     author: 'Angus Burroughs'
-//   },
-//   {
-//     img: "",
-//     title: 'Too',
-//     author: "John Johnson"
-//   }
-// ]
 
 export default function BookGridView() {
   const classes = useStyles();
