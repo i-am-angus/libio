@@ -6,7 +6,7 @@ import BooksMap from '../classes/BooksMap';
 
 interface IContextProps {
   books: BooksMap;
-  dispatch: ({type}:{type:string}) => void;
+  dispatch: ({ type, payload }:{type:string, payload: any}) => void;
 }
 export const BookContext = createContext({} as IContextProps);
 
